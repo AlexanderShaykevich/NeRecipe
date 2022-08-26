@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <item
+        android:iconTint="@color/white"
+        android:id="@+id/action_back"
+        android:checkable="true"
+        android:enabled="true"
+        android:icon="@drawable/ic_arrow_back_24"
+        android:title="@string/back"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:iconTint="@color/white"
+        android:id="@+id/action_like"
+        android:checkable="true"
+        android:enabled="true"
+        android:icon="@drawable/ic_favorite_border_white_24"
+        android:title="@string/favorites"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_edit"
+        android:enabled="true"
+        android:title="@string/edit" />
+
+    <item
+        android:id="@+id/menu_delete"
+        android:enabled="true"
+        android:title="@string/delete" />
+
+
+</menu>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categories">
+        <item>@string/european</item>
+        <item>@string/asian</item>
+        <item>@string/pan_asiatic</item>
+        <item>@string/eastern</item>
+        <item>@string/american</item>
+        <item>@string/russian</item>
+        <item>@string/mediterranean</item>
+    </string-array>
+
+    <string name="app_name">NeRecipe</string>
+    <string name="recipe_name">Recipe name</string>
+    <string name="recipe_description">Recipe description</string>
+    <string name="toast_recipe_added">Recipe was added!</string>
+    <string name="toast_recipe_name_empty">Recipe name can\'t be empty</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="add_recipe_button">Add recipe button</string>
+    <string name="search_button">Search</string>
+    <string name="european">European</string>
+    <string name="asian">Asian</string>
+    <string name="pan_asiatic">Pan-asiatic</string>
+    <string name="eastern">Eastern</string>
+    <string name="american">American</string>
+    <string name="russian">Russian</string>
+    <string name="mediterranean">Mediterranean</string>
+    <string name="searching_by_recipe_tittles">Searching by recipe tittles</string>
+    <string name="recipes">Recipes</string>
+    <string name="favorites">Favorites</string>
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
+    <string name="all">All</string>
+    <string name="create_update_a_recipe">CREATE/UPDATE A RECIPE</string>
+    <string name="author">Author:</string>
+    <string name="back">Back</string>
+    <string name="choose_a_category">Choose a category:</string>
+    <string name="from_gallery">From gallery</string>
+    <string name="from_gallery_to_step">Add image to step</string>
+    <string name="from_link">from link</string>
+    <string name="add_step">Add step</string>
+    <string name="save">Save</string>
+    <string name="cooking_steps">Cooking steps:</string>
+    <string name="step_description">Step description</string>
+    <string name="toast_empty_text">Step description can\'t be empty</string>
+    <string name="cancel">Cancel</string>
+    <string name="OK">OK</string>
+    <string name="link">Link</string>
+    <string name="toast_recipe_steps_empty">You have to add at least one step</string>
+    <string name="still_empty">Still empty</string>
+    <string name="save_a_recipe">Save a recipe and it will show up here</string>
+    <string name="save_a_recipe_favorites">Add recipe to favorites and it will show up here</string>
+    <string name="no_recipes">There are no recipes in this category</string>
+    <string name="category">Category:</string>
+    <string name="step">STEP</string>
+    <string name="close_newRecipeFragment">Do you want to exit? All entered data will be lost</string>
+    <string name="remove_all_from_favorites">Remove all from favorites</string>
+    <string name="confirm_remove">Confirm removing all</string>
+    <string name="add_image">+ Image</string>
+
+</resources>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    >
+<androidx.cardview.widget.CardView
+    android:layout_marginTop="16dp"
+    android:layout_marginStart="16dp"
+    android:id="@+id/cardViewImage"
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:cardCornerRadius="24dp"
+    >
+
+    <ImageView
+        android:id="@+id/recipeImage"
+        android:layout_width="144dp"
+        android:layout_height="96dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/eda"
+        />
+
+</androidx.cardview.widget.CardView>
+
+
+
+
+    <TextView
+        android:id="@+id/recipeName"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textStyle="italic"
+        android:textSize="18sp"
+        android:textColor="@color/custom_color"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cardViewImage"
+        app:layout_constraintEnd_toEndOf="parent"
+         tools:text="Отличный рецепт всякой вкуснятины на итальянский лад"
+        />
+
+    <TextView
+        android:id="@+id/recipeCategoryDes"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cardViewImage"
+        app:layout_constraintTop_toBottomOf="@+id/recipeName"
+        app:layout_constraintEnd_toStartOf="@id/recipeCategory"
+        android:text="@string/category"
+        />
+
+    <TextView
+        android:id="@+id/recipeCategory"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/recipeCategoryDes"
+        app:layout_constraintTop_toBottomOf="@+id/recipeName"
+        tools:text="Category"
+        />
+
+    <TextView
+        android:id="@+id/recipeAuthorDes"
+        android:layout_marginStart="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cardViewImage"
+        app:layout_constraintTop_toBottomOf="@+id/recipeCategory"
+        app:layout_constraintEnd_toStartOf="@id/recipeAuthor"
+        android:text="@string/author"
+        />
+
+    <TextView
+        android:id="@+id/recipeAuthor"
+        android:ellipsize="end"
+        android:lines="1"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/recipeAuthorDes"
+        app:layout_constraintTop_toBottomOf="@+id/recipeCategory"
+        tools:text="Author's name"
+        />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

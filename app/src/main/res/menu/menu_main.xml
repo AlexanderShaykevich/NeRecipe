@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search_24"
+        android:title="@string/search"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/action_filter"
+        android:icon="@drawable/ic_filter_24"
+        android:title="@string/filter"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/menu_all"
+        android:enabled="true"
+        android:title="@string/all"
+        />
+    <item
+        android:id="@+id/menu_european"
+        android:enabled="true"
+        android:title="@string/european"
+        />
+    <item
+        android:id="@+id/menu_asian"
+        android:enabled="true"
+        android:title="@string/asian"
+        />
+    <item
+        android:id="@+id/menu_pan_asiatic"
+        android:enabled="true"
+        android:title="@string/pan_asiatic"
+        />
+    <item
+        android:id="@+id/menu_eastern"
+        android:enabled="true"
+        android:title="@string/eastern"
+        />
+    <item
+        android:id="@+id/menu_american"
+        android:enabled="true"
+        android:title="@string/american"
+        />
+    <item
+        android:id="@+id/menu_russian"
+        android:enabled="true"
+        android:title="@string/russian"
+        />
+    <item
+        android:id="@+id/menu_mediterranean"
+        android:enabled="true"
+        android:title="@string/mediterranean"
+        />
+
+
+
+
+
+</menu>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Рецепты</string>
+    <string name="recipe_name">Название рецепта</string>
+    <string name="recipe_description">Описание рецепта</string>
+    <string name="toast_recipe_added">Рецепт добавлен!</string>
+    <string name="toast_recipe_name_empty">Название рецепта не может быть пустым!</string>
+    <string name="edit">Редактировать</string>
+    <string name="delete">Удалить</string>
+    <string name="add_recipe_button">Кнопка добавления рецепта</string>
+    <string name="search_button">Искать</string>
+    <string name="all">Все</string>
+    <string name="european">Европейская</string>
+    <string name="asian">Азиатская</string>
+    <string name="pan_asiatic">Паназиатская</string>
+    <string name="eastern">Восточная</string>
+    <string name="american">Американская</string>
+    <string name="russian">Русская</string>
+    <string name="mediterranean">Средиземноморская</string>
+    <string name="searching_by_recipe_tittles">Поиск по названиям</string>
+    <string name="recipes">Рецепты</string>
+    <string name="favorites">Избранное</string>
+    <string name="search">Поиск</string>
+    <string name="filter">Фильтр</string>
+    <string name="create_update_a_recipe">СОЗДАНИЕ/РЕДАКТИРОВАНИЕ РЕЦЕПТА</string>
+    <string name="author">Автор:</string>
+    <string name="back">Назад</string>
+    <string name="choose_a_category">Выберете категорию:</string>
+    <string name="from_gallery">из галереи</string>
+    <string name="from_gallery_to_step">Добавить изображение в шаг</string>
+    <string name="from_link">по ссылке</string>
+    <string name="add_step">Добавить шаг</string>
+    <string name="save">Сохранить</string>
+    <string name="cooking_steps">Шаги приготовления:</string>
+    <string name="step_description">Описание шага</string>
+    <string name="toast_empty_text">Описание шага не может быть пустым</string>
+    <string name="cancel">Отменить</string>
+    <string name="OK">OK</string>
+    <string name="link">Ссылка</string>
+    <string name="toast_recipe_steps_empty">Вы должны добавить хотя бы один шаг</string>
+    <string name="still_empty">Пока пусто</string>
+    <string name="save_a_recipe">Сохраните рецепт, и он появится тут</string>
+    <string name="save_a_recipe_favorites">Добавьте рецепт в избранное, и он появится тут</string>
+    <string name="no_recipes">Нет рецептов в данной категории</string>
+    <string name="category">Категория:</string>
+    <string name="step">ШАГ</string>
+    <string name="close_newRecipeFragment">Хотите выйти? Все введенные данные будут потеряны</string>
+    <string name="remove_all_from_favorites">Удалить все из избранного</string>
+    <string name="confirm_remove">Подтвердите удаление</string>
+    <string name="add_image">+ Изображение</string>
+
+
+</resources>

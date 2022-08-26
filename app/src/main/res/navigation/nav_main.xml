@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/recipes">
+
+    <fragment
+        android:id="@+id/recipes"
+        android:name="ru.netology.nerecipe.activity.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_recipes_to_newRecipeFragment"
+            app:destination="@id/newRecipeFragment" />
+        <action
+            android:id="@+id/action_recipes_to_recipeFragment"
+            app:destination="@id/recipeFragment"
+             />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favorites"
+        android:name="ru.netology.nerecipe.activity.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_favorites_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newRecipeFragment"
+        android:name="ru.netology.nerecipe.activity.NewRecipeFragment"
+        android:label="NewRecipeFragment" >
+        <action
+            android:id="@+id/action_newRecipeFragment_to_newStepFragment"
+            app:destination="@id/newStepFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeFragment"
+        android:name="ru.netology.nerecipe.activity.RecipeFragment"
+        android:label="RecipeFragment" >
+        <action
+            android:id="@+id/action_recipeFragment_to_newRecipeFragment"
+            app:destination="@id/newRecipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newStepFragment"
+        android:name="ru.netology.nerecipe.activity.NewStepFragment"
+        android:label="fragment_new_step"
+        tools:layout="@layout/fragment_new_step" />
+
+</navigation>
