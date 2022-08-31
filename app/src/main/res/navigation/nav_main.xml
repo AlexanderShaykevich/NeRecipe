@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/recipes"
         android:name="ru.netology.nerecipe.activity.MainFragment"
-        android:label="fragment_main"
+        android:label="@string/recipes"
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_recipes_to_newRecipeFragment"
@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/favorites"
         android:name="ru.netology.nerecipe.activity.FavoritesFragment"
-        android:label="fragment_favorites"
+        android:label="@string/favorites"
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_favorites_to_recipeFragment"
@@ -31,7 +31,7 @@
     <fragment
         android:id="@+id/newRecipeFragment"
         android:name="ru.netology.nerecipe.activity.NewRecipeFragment"
-        android:label="NewRecipeFragment" >
+        android:label="@string/recipe" >
         <action
             android:id="@+id/action_newRecipeFragment_to_newStepFragment"
             app:destination="@id/newStepFragment" />
@@ -39,7 +39,7 @@
     <fragment
         android:id="@+id/recipeFragment"
         android:name="ru.netology.nerecipe.activity.RecipeFragment"
-        android:label="RecipeFragment" >
+        android:label="@string/recipe" >
         <action
             android:id="@+id/action_recipeFragment_to_newRecipeFragment"
             app:destination="@id/newRecipeFragment" />
@@ -47,7 +47,7 @@
     <fragment
         android:id="@+id/newStepFragment"
         android:name="ru.netology.nerecipe.activity.NewStepFragment"
-        android:label="fragment_new_step"
+        android:label="@string/new_step"
         tools:layout="@layout/fragment_new_step" />
 
 </navigation>

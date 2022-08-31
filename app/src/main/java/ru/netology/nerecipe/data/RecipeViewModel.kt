@@ -6,8 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import ru.netology.nerecipe.db.AppDb
 import ru.netology.nerecipe.dto.Recipe
 import ru.netology.nerecipe.dto.Step
-import ru.netology.nerecipe.util.EditRecipeResult
-import ru.netology.nerecipe.util.EditStepResult
 import ru.netology.nerecipe.util.SingleLiveEvent
 
 class RecipeViewModel(application: Application) :
@@ -16,17 +14,15 @@ class RecipeViewModel(application: Application) :
     private val repository: RecipeRepository =
         RecipeRepositoryRoomImpl(AppDb.getInstance(application).recipeDao)
     val data = repository.get()
-    private val currentRecipe = MutableLiveData<Recipe?>(null)
-    private val currentStep = MutableLiveData<Step?>(null)
+    val currentRecipe = MutableLiveData<Recipe?>(null)
+    val currentStep = MutableLiveData<Step?>(null)
     val openRecipeEvent = SingleLiveEvent<Long>()
-    val editRecipeEvent = SingleLiveEvent<EditRecipeResult>()
-    val editStepEvent = SingleLiveEvent<EditStepResult>()
+    val editRecipeEvent = SingleLiveEvent<Boolean>()
+    val editStepEvent = SingleLiveEvent<Boolean>()
     var steps = emptyList<Step>()
     val stepsView = MutableLiveData<List<Step>?>(null)
     var imageUriRecipe = MutableLiveData<String?>(null)
     var imageUriStep = MutableLiveData<String?>(null)
-
-
 
     fun onSaveRecipeListener(
         name: String, category: String,
@@ -98,6 +94,8 @@ class RecipeViewModel(application: Application) :
         stepsView.value = steps
     }
 
+    fun clearSearch() = repository.getRecipes()
+
     override fun onFavoritesAddListener(recipe: Recipe) = repository.like(recipe.id)
 
     override fun onDeleteAllFromFavoritesListener() = repository.deleteAllFromFavorites()
@@ -106,16 +104,12 @@ class RecipeViewModel(application: Application) :
 
     override fun onEditListener(recipe: Recipe) {
         currentRecipe.value = recipe
-        editRecipeEvent.value =
-            EditRecipeResult(recipe.name, recipe.categoryId, recipe.imageUri, recipe.steps)
+        editRecipeEvent.value = true
     }
 
     override fun onRecipeClickListener(recipe: Recipe) {
         openRecipeEvent.value = recipe.id
     }
-
-    override fun onCategoryListener(categoryId: Int): Boolean =
-        repository.filterByCategoryMain(categoryId)
 
     override fun onRemoveFromFilterCategoryListener(categoryId: Int) =
         repository.removeCategoryFromFilterChips(categoryId)
@@ -130,11 +124,12 @@ class RecipeViewModel(application: Application) :
     override fun onDeleteStepListener(step: Step) {
         steps = steps.filterNot { it.id == step.id }
         stepsView.value = steps
+        currentRecipe.value = currentRecipe.value?.copy(steps = steps)
     }
 
     override fun onEditStepListener(step: Step) {
         currentStep.value = step
-        editStepEvent.value = EditStepResult(step.content, step.image)
+        editStepEvent.value = true
     }
 
 

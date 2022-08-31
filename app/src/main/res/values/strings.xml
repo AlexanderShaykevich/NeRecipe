@@ -16,6 +16,7 @@
     <string name="toast_recipe_added">Recipe was added!</string>
     <string name="toast_recipe_name_empty">Recipe name can\'t be empty</string>
     <string name="edit">Edit</string>
+    <string name="edit_mode">Edit</string>
     <string name="delete">Delete</string>
     <string name="add_recipe_button">Add recipe button</string>
     <string name="search_button">Search</string>
@@ -54,9 +55,13 @@
     <string name="no_recipes">There are no recipes in this category</string>
     <string name="category">Category:</string>
     <string name="step">STEP</string>
+    <string name="new_step">Step</string>
     <string name="close_newRecipeFragment">Do you want to exit? All entered data will be lost</string>
     <string name="remove_all_from_favorites">Remove all from favorites</string>
     <string name="confirm_remove">Confirm removing all</string>
     <string name="add_image">+ Image</string>
+    <string name="new_recipe">New recipe</string>
+    <string name="recipe">Recipe</string>
+
 
 </resources>

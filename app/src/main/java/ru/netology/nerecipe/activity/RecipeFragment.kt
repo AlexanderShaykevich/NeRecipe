@@ -3,9 +3,7 @@ package ru.netology.nerecipe.activity
 import android.content.Context
 import android.os.Bundle
 import android.view.*
-import android.widget.ImageView
 import androidx.core.view.MenuProvider
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -17,14 +15,9 @@ import ru.netology.nerecipe.activity.MainFragment.Companion.KEY_ID
 import ru.netology.nerecipe.data.RecipeViewModel
 import ru.netology.nerecipe.data.StepAdapter
 import ru.netology.nerecipe.databinding.FragmentRecipeBinding
-import ru.netology.nerecipe.databinding.StepBinding
 import ru.netology.nerecipe.dto.Recipe
-import ru.netology.nerecipe.util.EditRecipeArgs
-import ru.netology.nerecipe.util.EditRecipeResult
-import ru.netology.nerecipe.util.EditStepArgs
-import ru.netology.nerecipe.util.EditStepResult
 
-class RecipeFragment() : Fragment() {
+class RecipeFragment : Fragment() {
     private val viewModel by viewModels<RecipeViewModel>(ownerProducer = ::requireParentFragment)
     lateinit var binding: FragmentRecipeBinding
     lateinit var recipe: Recipe
@@ -36,7 +29,6 @@ class RecipeFragment() : Fragment() {
         binding = FragmentRecipeBinding.inflate(inflater, container, false)
         val viewHolder = RecipeViewHolder(binding, requireContext())
         val id = arguments?.getLong(KEY_ID)
-        requireActivity().title = "Рецепт"
 
         val adapter = StepAdapter(requireContext())
         binding.rvRecipe.adapter = adapter
@@ -51,18 +43,8 @@ class RecipeFragment() : Fragment() {
             findNavController().navigateUp()
         }
 
-        viewModel.editRecipeEvent.observe(viewLifecycleOwner) { recipeContent ->
-            findNavController().navigate(
-                R.id.action_recipeFragment_to_newRecipeFragment,
-                Bundle().apply {
-                    EditRecipeArgs = EditRecipeResult(
-                        recipeContent.name,
-                        recipeContent.categoryId,
-                        recipeContent.imageUri,
-                        recipeContent.steps,
-                    )
-                }
-            )
+        viewModel.editRecipeEvent.observe(viewLifecycleOwner) {
+            findNavController().navigate(R.id.action_recipeFragment_to_newRecipeFragment)
         }
 
         return binding.root
@@ -99,19 +81,12 @@ class RecipeFragment() : Fragment() {
                         }
                         true
                     }
-                    R.id.action_back -> {
-                        findNavController().navigateUp()
-                        true
-                    }
+
                     else -> false
                 }
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-    }
-
-    companion object {
-        var Bundle.EditRecipeArgs: EditRecipeResult by EditRecipeArgs
     }
 
 

@@ -6,6 +6,7 @@
     <string name="toast_recipe_added">Рецепт добавлен!</string>
     <string name="toast_recipe_name_empty">Название рецепта не может быть пустым!</string>
     <string name="edit">Редактировать</string>
+    <string name="edit_mode">Редактирование</string>
     <string name="delete">Удалить</string>
     <string name="add_recipe_button">Кнопка добавления рецепта</string>
     <string name="search_button">Искать</string>
@@ -44,10 +45,13 @@
     <string name="no_recipes">Нет рецептов в данной категории</string>
     <string name="category">Категория:</string>
     <string name="step">ШАГ</string>
+    <string name="new_step">Шаг</string>
     <string name="close_newRecipeFragment">Хотите выйти? Все введенные данные будут потеряны</string>
     <string name="remove_all_from_favorites">Удалить все из избранного</string>
     <string name="confirm_remove">Подтвердите удаление</string>
     <string name="add_image">+ Изображение</string>
+    <string name="new_recipe">Новый рецепт</string>
+    <string name="recipe">Рецепт</string>
 
 
 </resources>

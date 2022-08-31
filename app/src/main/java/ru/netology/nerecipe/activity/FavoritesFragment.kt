@@ -27,7 +27,6 @@ class FavoritesFragment : Fragment() {
         binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         val adapter = RecipeAdapter(requireContext(),viewModel)
         binding.recyclerView.adapter = adapter
-        requireActivity().title = "Избранное"
 
         viewModel.data.observe(viewLifecycleOwner) { recipes ->
             adapter.submitList(recipes.filter { it.inFavorites })
@@ -58,10 +57,6 @@ class FavoritesFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
 
                 return when (menuItem.itemId) {
-                    R.id.action_back -> {
-                        findNavController().navigateUp()
-                        true
-                    }
 
                     R.id.deleteAll -> {
                         if(binding.emptyTextGroup.isVisible) {

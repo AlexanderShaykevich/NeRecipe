@@ -7,15 +7,6 @@
 
     <item
         android:iconTint="@color/white"
-        android:id="@+id/action_back"
-        android:checkable="true"
-        android:enabled="true"
-        android:icon="@drawable/ic_arrow_back_24"
-        android:title="@string/back"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:iconTint="@color/white"
         android:id="@+id/action_like"
         android:checkable="true"
         android:enabled="true"
