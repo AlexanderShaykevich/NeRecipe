@@ -2,7 +2,6 @@ package ru.netology.nerecipe.activity
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -31,7 +30,6 @@ class MainFragment : Fragment() {
         binding = FragmentMainBinding.inflate(inflater, container, false)
         val adapter = RecipeAdapter(requireContext(), viewModel)
         binding.recyclerView.adapter = adapter
-        requireActivity().title = "Рецепты"
 
         activateChips()
 
@@ -43,7 +41,7 @@ class MainFragment : Fragment() {
 
             searchClear.setOnClickListener {
                 search.text?.clear()
-                viewModel.onCategoryListener(ALL)
+                viewModel.clearSearch()
             }
 
             searchButton.setOnClickListener {
@@ -92,7 +90,6 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val menuHost = requireActivity()
@@ -103,63 +100,7 @@ class MainFragment : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-
                 return when (menuItem.itemId) {
-                    R.id.menu_all -> {
-                        viewModel.onCategoryListener(ALL)
-                        makeChipsGroupInvisible()
-                        makeAllChipsChecked()
-                        true
-                    }
-                    R.id.menu_european -> {
-                        if (!viewModel.onCategoryListener(EUROPEAN)) {
-                            toastEmptyCategory()
-                        }
-                        makeChipsGroupInvisible()
-                        true
-                    }
-                    R.id.menu_asian -> {
-                        if (!viewModel.onCategoryListener(ASIAN)) {
-                            toastEmptyCategory()
-                        }
-                        makeChipsGroupInvisible()
-                        true
-                    }
-                    R.id.menu_pan_asiatic -> {
-                        if (!viewModel.onCategoryListener(PAN_ASIATIC)) {
-                            toastEmptyCategory()
-                        }
-                        makeChipsGroupInvisible()
-                        true
-                    }
-                    R.id.menu_eastern -> {
-                        if (!viewModel.onCategoryListener(EASTERN)) {
-                            toastEmptyCategory()
-                        }
-                        makeChipsGroupInvisible()
-                        true
-                    }
-                    R.id.menu_american -> {
-                        if (!viewModel.onCategoryListener(AMERICAN)) {
-                            toastEmptyCategory()
-                        }
-                        makeChipsGroupInvisible()
-                        true
-                    }
-                    R.id.menu_russian -> {
-                        if (!viewModel.onCategoryListener(RUSSIAN)) {
-                            toastEmptyCategory()
-                        }
-                        makeChipsGroupInvisible()
-                        true
-                    }
-                    R.id.menu_mediterranean -> {
-                        if (!viewModel.onCategoryListener(MEDITERRANEAN)) {
-                            toastEmptyCategory()
-                        }
-                        makeChipsGroupInvisible()
-                        true
-                    }
                     R.id.action_filter -> {
                         with(binding) {
                             filterChipsGroup.isVisible = !filterChipsGroup.isVisible
@@ -181,20 +122,10 @@ class MainFragment : Fragment() {
                         }
                     }
 
-
                     else -> false
                 }
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
-
-    }
-
-    private fun toastEmptyCategory() {
-        Toast.makeText(
-            requireActivity(),
-            getString(R.string.no_recipes),
-            Toast.LENGTH_SHORT
-        ).show()
 
     }
 
@@ -218,7 +149,6 @@ class MainFragment : Fragment() {
                 viewModel.onAddToFilterCategoryListener(category)
             }
         }
-
     }
 
     private fun makeAllChipsChecked() {
@@ -239,7 +169,6 @@ class MainFragment : Fragment() {
 
     companion object {
         const val KEY_ID = "id"
-        const val ALL = 11
         const val EUROPEAN = 0
         const val ASIAN = 1
         const val PAN_ASIATIC = 2

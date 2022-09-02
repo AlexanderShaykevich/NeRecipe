@@ -14,8 +14,12 @@ class RecipeRepositoryRoomImpl(
     private var filteredRecipes = emptyList<Recipe>()
     private val data = MutableLiveData(allRecipes)
 
-    private fun getFromBase() {
-        allRecipes = dao.getForFilter().map { it.toModel() }
+    init {
+        getRecipes()
+    }
+
+    override fun getRecipes() {
+        allRecipes = dao.getBase().map { it.toModel() }
         data.value = allRecipes
     }
 
@@ -23,36 +27,22 @@ class RecipeRepositoryRoomImpl(
 
     override fun save(recipe: Recipe) {
         dao.save(recipe.toEntity())
-        getFromBase()
+        getRecipes()
     }
 
     override fun delete(id: Long) {
         dao.delete(id)
-        getFromBase()
+        getRecipes()
     }
 
     override fun like(id: Long) {
         dao.inFavorites(id)
-        getFromBase()
+        getRecipes()
     }
 
     override fun deleteAllFromFavorites() {
         dao.clearFavorites()
-        getFromBase()
-    }
-
-    override fun filterByCategoryMain(categoryId: Int): Boolean {
-        if (categoryId == 11) {
-            data.value = dao.getForFilter().map { it.toModel() }
-            return true
-        } else {
-            val chosenCategory = dao.filterByCategory(categoryId).map { it.toModel() }
-            if (chosenCategory.isNullOrEmpty()) {
-                return false
-            }
-            data.value = chosenCategory
-            return true
-        }
+        getRecipes()
     }
 
     override fun removeCategoryFromFilterChips(categoryId: Int) {

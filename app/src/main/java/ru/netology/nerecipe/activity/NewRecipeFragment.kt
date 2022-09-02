@@ -15,12 +15,9 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import ru.netology.nerecipe.R
-import ru.netology.nerecipe.activity.RecipeFragment.Companion.EditRecipeArgs
 import ru.netology.nerecipe.data.RecipeViewModel
 import ru.netology.nerecipe.data.StepEditAdapter
 import ru.netology.nerecipe.databinding.FragmentNewRecipeBinding
-import ru.netology.nerecipe.util.EditStepArgs
-import ru.netology.nerecipe.util.EditStepResult
 
 class NewRecipeFragment : Fragment() {
     lateinit var binding: FragmentNewRecipeBinding
@@ -32,10 +29,20 @@ class NewRecipeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentNewRecipeBinding.inflate(inflater, container, false)
-        requireActivity().title = "Новый рецепт"
 
         val adapter = StepEditAdapter(requireContext(), viewModel)
         binding.rvRecipe.adapter = adapter
+
+        viewModel.currentRecipe.observe(viewLifecycleOwner) { recipe ->
+            if (recipe != null) {
+                with(binding) {
+                    recipeName.setText(recipe.name)
+                    category.setSelection(recipe.categoryId)
+                    viewModel.editStepsMode(recipe.steps)
+                    viewModel.imageUriRecipe.value = recipe.imageUri
+                }
+            }
+        }
 
         viewModel.stepsView.observe(viewLifecycleOwner) {
             adapter.submitList(it)
@@ -47,17 +54,6 @@ class NewRecipeFragment : Fragment() {
                     .with(requireActivity())
                     .load(it)
                     .into(binding.chooseImage)
-            }
-        }
-
-        arguments?.EditRecipeArgs?.let {
-            requireActivity().title = "Редактирование"
-
-            with(binding) {
-                recipeName.setText(it.name)
-                category.setSelection(it.categoryId)
-                viewModel.editStepsMode(it.steps)
-                viewModel.imageUriRecipe.value = it.imageUri
             }
         }
 
@@ -88,10 +84,6 @@ class NewRecipeFragment : Fragment() {
                     val link = dialogView.findViewById<EditText>(R.id.link_dialog).text.toString()
                     if (link.isNotEmpty()) {
                         viewModel.imageUriRecipe.value = link
-//                        Glide
-//                            .with(requireContext())
-//                            .load(viewModel.imageUriRecipe)
-//                            .into(binding.chooseImage)
                         dialog.dismiss()
                         (dialogView.parent as? ViewGroup)?.removeView(dialogView)
                     }
@@ -100,16 +92,13 @@ class NewRecipeFragment : Fragment() {
         }
 
         binding.buttonStepAdd.setOnClickListener {
+            saveData()
             findNavController().navigate(R.id.action_newRecipeFragment_to_newStepFragment)
         }
 
-        viewModel.editStepEvent.observe(viewLifecycleOwner) { stepContent ->
-            findNavController().navigate(
-                R.id.action_newRecipeFragment_to_newStepFragment,
-                Bundle().apply {
-                    EditStepArgs = EditStepResult(stepContent.content, stepContent.imageUri)
-                }
-            )
+        viewModel.editStepEvent.observe(viewLifecycleOwner) {
+            saveData()
+            findNavController().navigate(R.id.action_newRecipeFragment_to_newStepFragment)
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
@@ -119,8 +108,7 @@ class NewRecipeFragment : Fragment() {
                     dialog.dismiss()
                 }
                 .setPositiveButton(R.string.OK) { dialog, _ ->
-                    viewModel.clearStepsList()
-                    viewModel.imageUriRecipe.value = null
+                    clearData()
                     findNavController().navigateUp()
                     dialog.dismiss()
                 }
@@ -142,12 +130,37 @@ class NewRecipeFragment : Fragment() {
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
-                    R.id.menu_cancel -> {
-                        viewModel.clearStepsList()
-                        findNavController().navigateUp()
-                        viewModel.imageUriRecipe.value = null
-                        true
+
+                    android.R.id.home -> {
+                        MaterialAlertDialogBuilder(requireContext())
+                            .setTitle(R.string.close_newRecipeFragment)
+                            .setNegativeButton(R.string.cancel) { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .setPositiveButton(R.string.OK) { dialog, _ ->
+                                clearData()
+                                findNavController().navigateUp()
+                                dialog.dismiss()
+                            }
+                            .show()
+                        return true
                     }
+
+                    R.id.menu_cancel -> {
+                        MaterialAlertDialogBuilder(requireContext())
+                            .setTitle(R.string.close_newRecipeFragment)
+                            .setNegativeButton(R.string.cancel) { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .setPositiveButton(R.string.OK) { dialog, _ ->
+                                clearData()
+                                findNavController().navigateUp()
+                                dialog.dismiss()
+                            }
+                            .show()
+                        return true
+                    }
+
                     R.id.menu_save -> {
                         val category = binding.category.selectedItem.toString()
                         val categoryId = binding.category.selectedItemPosition
@@ -176,7 +189,6 @@ class NewRecipeFragment : Fragment() {
 
                         viewModel.onSaveRecipeListener(name, category, categoryId)
                         viewModel.clearStepsList()
-                        viewModel.imageUriRecipe.value = null
                         findNavController().navigateUp()
                         true
                     }
@@ -188,9 +200,21 @@ class NewRecipeFragment : Fragment() {
 
     }
 
-    companion object {
-        var Bundle.EditStepArgs: EditStepResult by EditStepArgs
+    private fun saveData() {
+        viewModel.currentRecipe.value = viewModel.currentRecipe.value?.copy(
+            category = binding.category.selectedItem.toString(),
+            categoryId = binding.category.selectedItemPosition,
+            name = binding.recipeName.text.toString(),
+            imageUri = viewModel.imageUriRecipe.value
+        )
     }
+
+    private fun clearData() {
+        viewModel.clearStepsList()
+        viewModel.currentRecipe.value = null
+        viewModel.imageUriRecipe.value = null
+    }
+
 
 }
 

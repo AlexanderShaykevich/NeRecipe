@@ -11,10 +11,7 @@ import ru.netology.nerecipe.entity.RecipeEntity
 interface RecipeDao {
 
     @Query("SELECT * FROM recipes ORDER BY id DESC")
-    fun get(): LiveData<List<RecipeEntity>>
-
-    @Query("SELECT * FROM recipes ORDER BY id DESC")
-    fun getForFilter(): List<RecipeEntity>
+    fun getBase(): List<RecipeEntity>
 
     @Insert
     fun insert(recipe: RecipeEntity)

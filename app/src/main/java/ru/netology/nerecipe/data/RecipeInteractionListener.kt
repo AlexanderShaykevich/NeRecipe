@@ -9,7 +9,6 @@ interface RecipeInteractionListener {
     fun onDeleteListener(recipe: Recipe)
     fun onEditListener(recipe: Recipe)
     fun onRecipeClickListener(recipe: Recipe)
-    fun onCategoryListener(categoryId: Int): Boolean
     fun onRemoveFromFilterCategoryListener(categoryId: Int)
     fun onAddToFilterCategoryListener(categoryId: Int)
     fun onFilterClickedListener()
