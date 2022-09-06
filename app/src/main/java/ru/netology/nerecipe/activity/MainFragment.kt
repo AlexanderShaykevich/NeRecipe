@@ -10,7 +10,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.chip.Chip
 import ru.netology.nerecipe.R
 import ru.netology.nerecipe.data.RecipeAdapter
 import ru.netology.nerecipe.data.RecipeViewModel
@@ -30,8 +29,6 @@ class MainFragment : Fragment() {
         binding = FragmentMainBinding.inflate(inflater, container, false)
         val adapter = RecipeAdapter(requireContext(), viewModel)
         binding.recyclerView.adapter = adapter
-
-        activateChips()
 
         with(binding) {
 
@@ -87,6 +84,16 @@ class MainFragment : Fragment() {
 
         touchHelper.attachToRecyclerView(binding.recyclerView)
 
+        binding.filterChipsGroup.setOnCheckedStateChangeListener { _, checkedIds ->
+            viewModel.onFilterClickedListener()
+
+            for (id in checkedIds) {
+                checkedChipsFilter(id)
+            }
+
+        }
+
+
         return binding.root
     }
 
@@ -129,25 +136,15 @@ class MainFragment : Fragment() {
 
     }
 
-    private fun activateChips() {
-        with(binding) {
-            chipEuropean.filterRecipes(EUROPEAN)
-            chipAsian.filterRecipes(ASIAN)
-            chipPanAsiatic.filterRecipes(PAN_ASIATIC)
-            chipEastern.filterRecipes(EASTERN)
-            chipAmerican.filterRecipes(AMERICAN)
-            chipRussian.filterRecipes(RUSSIAN)
-            chipMediterranean.filterRecipes(MEDITERRANEAN)
-        }
-    }
-
-    private fun Chip.filterRecipes(category: Int) {
-        setOnCheckedChangeListener { _, isChecked ->
-            if (!isChecked) {
-                viewModel.onRemoveFromFilterCategoryListener(category)
-            } else {
-                viewModel.onAddToFilterCategoryListener(category)
-            }
+    private fun checkedChipsFilter(id: Int) {
+        when (id) {
+            binding.chipEuropean.id -> viewModel.onAddToFilterCategoryListener(EUROPEAN)
+            binding.chipAmerican.id -> viewModel.onAddToFilterCategoryListener(AMERICAN)
+            binding.chipAsian.id -> viewModel.onAddToFilterCategoryListener(ASIAN)
+            binding.chipEastern.id -> viewModel.onAddToFilterCategoryListener(EASTERN)
+            binding.chipMediterranean.id -> viewModel.onAddToFilterCategoryListener(MEDITERRANEAN)
+            binding.chipRussian.id -> viewModel.onAddToFilterCategoryListener(RUSSIAN)
+            binding.chipPanAsiatic.id -> viewModel.onAddToFilterCategoryListener(PAN_ASIATIC)
         }
     }
 

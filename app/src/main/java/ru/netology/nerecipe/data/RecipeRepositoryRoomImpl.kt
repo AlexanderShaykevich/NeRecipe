@@ -45,18 +45,13 @@ class RecipeRepositoryRoomImpl(
         getRecipes()
     }
 
-    override fun removeCategoryFromFilterChips(categoryId: Int) {
-        filteredRecipes = filteredRecipes.filterNot { it.categoryId == categoryId }
-        data.value = filteredRecipes
-    }
-
     override fun addCategoryToFilterChips(categoryId: Int) {
         filteredRecipes = filteredRecipes + allRecipes.filter { it.categoryId == categoryId }
         data.value = filteredRecipes
     }
 
     override fun startFilterChips() {
-        filteredRecipes = allRecipes
+        filteredRecipes = emptyList()
         data.value = allRecipes
     }
 

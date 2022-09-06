@@ -70,7 +70,8 @@ class NewStepFragment : Fragment() {
                 return@setOnClickListener
             }
             viewModel.onSaveStepListener(binding.textStep.text.toString())
-            viewModel.currentRecipe.value = viewModel.currentRecipe.value?.copy(steps = viewModel.steps)
+            viewModel.currentRecipe.value?.copy(steps = viewModel.steps)
+                ?.let { recipe -> viewModel.changeRecipeData(recipe) }
             findNavController().navigateUp()
         }
 
@@ -81,8 +82,7 @@ class NewStepFragment : Fragment() {
                     dialog.dismiss()
                 }
                 .setPositiveButton(R.string.OK) { dialog, _ ->
-                    viewModel.imageUriStep.value = null
-                    viewModel.currentStep.value = null
+                    viewModel.clearStepData()
                     findNavController().navigateUp()
                     dialog.dismiss()
                 }

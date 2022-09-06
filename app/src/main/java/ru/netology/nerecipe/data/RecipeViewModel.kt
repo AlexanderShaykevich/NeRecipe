@@ -94,6 +94,21 @@ class RecipeViewModel(application: Application) :
         stepsView.value = steps
     }
 
+    fun clearRecipeData() {
+        clearStepsList()
+        currentRecipe.value = null
+        imageUriRecipe.value = null
+    }
+
+    fun clearStepData() {
+        imageUriStep.value = null
+        currentStep.value = null
+    }
+
+    fun changeRecipeData(recipe: Recipe) {
+        currentRecipe.value = recipe
+    }
+
     fun clearSearch() = repository.getRecipes()
 
     override fun onFavoritesAddListener(recipe: Recipe) = repository.like(recipe.id)

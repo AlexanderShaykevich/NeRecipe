@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import ru.netology.nerecipe.R
 import ru.netology.nerecipe.databinding.RecipeBinding
 import ru.netology.nerecipe.dto.Recipe
 
@@ -47,6 +48,8 @@ class RecipeViewHolder(
                         .with(context)
                         .load(it)
                         .into(recipeImage)
+            } ?: run {
+                recipeImage.setImageResource(R.drawable.eda)
             }
 
             root.setOnClickListener {

@@ -10,7 +10,6 @@ interface RecipeRepository {
     fun like(id: Long)
     fun deleteAllFromFavorites()
     fun save(recipe: Recipe)
-    fun removeCategoryFromFilterChips(categoryId: Int)
     fun addCategoryToFilterChips(categoryId: Int)
     fun startFilterChips()
     fun search(query: String)
