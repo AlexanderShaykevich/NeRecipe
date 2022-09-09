@@ -108,7 +108,7 @@ class NewRecipeFragment : Fragment() {
                     dialog.dismiss()
                 }
                 .setPositiveButton(R.string.OK) { dialog, _ ->
-                    clearData()
+                    viewModel.clearRecipeData()
                     findNavController().navigateUp()
                     dialog.dismiss()
                 }
@@ -138,7 +138,7 @@ class NewRecipeFragment : Fragment() {
                                 dialog.dismiss()
                             }
                             .setPositiveButton(R.string.OK) { dialog, _ ->
-                                clearData()
+                                viewModel.clearRecipeData()
                                 findNavController().navigateUp()
                                 dialog.dismiss()
                             }
@@ -153,7 +153,7 @@ class NewRecipeFragment : Fragment() {
                                 dialog.dismiss()
                             }
                             .setPositiveButton(R.string.OK) { dialog, _ ->
-                                clearData()
+                                viewModel.clearRecipeData()
                                 findNavController().navigateUp()
                                 dialog.dismiss()
                             }
@@ -201,19 +201,18 @@ class NewRecipeFragment : Fragment() {
     }
 
     private fun saveData() {
-        viewModel.currentRecipe.value = viewModel.currentRecipe.value?.copy(
+        viewModel.currentRecipe.value?.copy(
             category = binding.category.selectedItem.toString(),
             categoryId = binding.category.selectedItemPosition,
             name = binding.recipeName.text.toString(),
-            imageUri = viewModel.imageUriRecipe.value
-        )
+            imageUri = viewModel.imageUriRecipe.value)?.let {
+            viewModel.changeRecipeData(
+                it
+            )
+        }
     }
 
-    private fun clearData() {
-        viewModel.clearStepsList()
-        viewModel.currentRecipe.value = null
-        viewModel.imageUriRecipe.value = null
-    }
+
 
 
 }
